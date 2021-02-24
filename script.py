@@ -76,7 +76,7 @@ hurricanes = {}
 
 def build_dict_hurricanes():
 
-    length = len(names)
+    length = len(names) + 1
     counter = 0
 
     for i in range(length):
