@@ -216,9 +216,54 @@ str_deadliest_hurricane_ever = find_most_deaths_by_hurricane()
 
 #---------------------------------------------------------------------------------------------------#
 #---------------------------------------------------------------------------------------------------#
-# Activity 8: write your greatest number of deaths function here:
+# Activity 8: Function rates hurricanes on a mortality scale
 #---------------------------------------------------------------------------------------------------#
 #---------------------------------------------------------------------------------------------------#
+#Write a function that rates hurricanes on a mortality scale according to the following ratings, where the key is the rating and the value is the upper bound of deaths for that rating.
+
+#mortality_scale = {0: 0,
+#                   1: 100,
+#                   2: 500,
+#                   3: 1000,
+#                   4: 10000}
+#For example, a hurricane with a 1 mortality rating would have resulted in greater than 0 but less than or equal to 100 #deaths. A hurricane with a 5 mortality rating would have resulted in greater than 10000 deaths.
+
+#Store the hurricanes in a new dictionary where the keys are mortality ratings and the values are lists containing a #dictionary for each hurricane that falls into that mortality rating.
+
+d_mortality_rankings = {
+    1:[],
+    2:[],
+    3:[],
+    4:[],
+    5:[]
+}
+def hurricane_mortality_rank():
+    counter = 0
+    for hurricane in d_hurricanes:
+
+        mortality_scale = 0
+        deaths = d_hurricanes[hurricane].get("Deaths")
+
+        if deaths == 0:
+            mortality_scale = 0
+        elif deaths > 0 and deaths <= 100:
+            mortality_scale = 1
+        elif deaths > 100 and deaths <=500:
+            mortality_scale = 2
+        elif deaths > 500 and deaths <= 1000:
+            mortality_scale = 3 
+        elif deaths > 1000 and deaths <= 10000:
+            mortality_scale = 4
+        elif deaths > 10000:
+            mortality_scale = 5 
+
+        d_mortality_rankings[mortality_scale].append(d_hurricanes[hurricane])
+        counter += 1
+
+hurricane_mortality_rank()
+
+
+
 
 #---------------------------------------------------------------------------------------------------#
 #---------------------------------------------------------------------------------------------------#
