@@ -92,7 +92,7 @@ build_dict_hurricanes()
 
 #---------------------------------------------------------------------------------------------------#
 #---------------------------------------------------------------------------------------------------#
-# Activity 4:
+# Activity 4: Hurricanes by Year
 #---------------------------------------------------------------------------------------------------#
 #---------------------------------------------------------------------------------------------------#
 
@@ -114,9 +114,10 @@ build_dict_hurricanes()
 # 'Deaths': 16
 # }
 
-d_hurricanes_by_year = {}
+
 def build_dict_hurricanes_by_year():
-    
+    d_hurricanes_by_year = {}
+
     for i in d_hurricanes:
         current_year = d_hurricanes[i].get("Year")        
         current_hurricane = d_hurricanes[i]
@@ -128,26 +129,90 @@ def build_dict_hurricanes_by_year():
 
 build_dict_hurricanes_by_year()
 
+#---------------------------------------------------------------------------------------------------#
+#---------------------------------------------------------------------------------------------------#
+# Activity 5: Count Per Area
+#---------------------------------------------------------------------------------------------------#
+#---------------------------------------------------------------------------------------------------#
+# You believe that knowing how often each of the areas of the Atlantic are affected by these strong 
+# hurricanes is important for making preparations for future hurricanes.
+#
+# Write a function that counts how often each area is listed as an affected area of a hurricane. Store 
+# and return the results in a dictionary where the keys are the affected areas and the values are 
+# counts of how many times the areas were affected.
+#
+#Test your function on your hurricane dictionary.
+d_count_hurricane_by_area = {}
+def build_dict_area_count():
+    
+    l_areas_affected = []
+    
+    for hurricane in d_hurricanes:
+        l_areas_affected = d_hurricanes[hurricane].get("Areas Affected")
+        for area in l_areas_affected:
+            if area not in d_count_hurricane_by_area:
+                d_count_hurricane_by_area[area] = 1
+                
+            else:
+                area_count = d_count_hurricane_by_area[area] + 1
+                d_count_hurricane_by_area[area] = area_count
+
+build_dict_area_count()
 
 
 
-#---------------------------------------------------------------------------------------------------#
-#---------------------------------------------------------------------------------------------------#
-# Activity 5: Test your function on your hurricane dictionary.
-#---------------------------------------------------------------------------------------------------#
-#---------------------------------------------------------------------------------------------------#
 
 #---------------------------------------------------------------------------------------------------#
 #---------------------------------------------------------------------------------------------------#
-# Activity 6: write your count affected areas function here:
+# Activity 6: 
 #---------------------------------------------------------------------------------------------------#
 #---------------------------------------------------------------------------------------------------#
+#Write a function that finds the area affected by the most hurricanes, and how often it was hit.
+#Test your function on your affected area dictionary.
+
+def find_most_affected_area():
+    count_most_hurricanes = 0
+    area_most_hurricanes = ""
+    
+    for area in d_count_hurricane_by_area:
+        count = d_count_hurricane_by_area[area]
+        if count > count_most_hurricanes:
+           count_most_hurricanes = count
+           area_most_hurricanes = area
+        
+    
+    answer = area_most_hurricanes + " has had the most hurricanes, " + str(count_most_hurricanes) + " in total."
+    return answer
+
+str_most_affected_Areas = find_most_affected_area()       
+
 
 #---------------------------------------------------------------------------------------------------#
 #---------------------------------------------------------------------------------------------------#
-# Activity 7: write your find most affected area function here:
+# Activity 7: write your find greatest number of deaths
 #---------------------------------------------------------------------------------------------------#
 #---------------------------------------------------------------------------------------------------#
+#Write a function that finds the hurricane that caused the greatest number of deaths, 
+# and how many deaths it caused.
+#Test your function on your hurricane dictionary.
+
+def find_most_deaths_by_hurricane():
+    count_most_deaths = 0
+    deadliest_hurricane = ""
+
+    for hurricane in d_hurricanes:
+        current_deaths = d_hurricanes[hurricane].get("Deaths")
+        if current_deaths > count_most_deaths:
+            count_most_deaths = current_deaths
+            deadliest_hurricane = hurricane
+    
+    result = deadliest_hurricane + " was the deadliest hurricane, responsible in total for " + str(count_most_deaths) + " deaths."
+    return result
+
+str_deadliest_hurricane_ever = find_most_deaths_by_hurricane()
+
+
+
 
 #---------------------------------------------------------------------------------------------------#
 #---------------------------------------------------------------------------------------------------#
