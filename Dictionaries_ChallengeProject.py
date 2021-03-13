@@ -26,13 +26,13 @@ deaths = [90,4000,16,3103,179,184,408,682,5,1023,43,319,688,259,37,11,2068,269,3
 # Write a function that returns a new list of updated damages where:
 # 1) the recorded data is converted to float values 
 # 2) and the missing data is retained as "Damages not recorded".
-# 3)Test your function with the data stored in damages.
+# 3) Test your function with the data stored in damages.
  
 #create an empty list for the function to return as output
 damages_cleaned = []
 
 def update_damages(list):
-    val = 0
+    fl_val = 0
     suffix = ""
     damages_cleaned.clear
     for damage in damages:
@@ -40,8 +40,8 @@ def update_damages(list):
             damages_cleaned.append(damage)
             continue
         suffix = damage[-1]
-        val = damage[:-1]
-        fl_val = float(val)
+        
+        fl_val = float(damage[:-1])
         if suffix == "M":
             fl_val = fl_val * 1000000
         else:
