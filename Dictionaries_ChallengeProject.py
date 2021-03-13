@@ -1,3 +1,7 @@
+#import locale
+#locale.setlocale(locale.LC_ALL, "") # Use '' for auto, or force e.g. to 'en_US.UTF-8'
+#locale.format("%d", 1255000, grouping=True)
+
 # names of hurricanes
 names = ['Cuba I', 'San Felipe II Okeechobee', 'Bahamas', 'Cuba II', 'CubaBrownsville', 'Tampico', 'Labor Day', 'New England', 'Carol', 'Janet', 'Carla', 'Hattie', 'Beulah', 'Camille', 'Edith', 'Anita', 'David', 'Allen', 'Gilbert', 'Hugo', 'Andrew', 'Mitch', 'Isabel', 'Ivan', 'Emily', 'Katrina', 'Rita', 'Wilma', 'Dean', 'Felix', 'Matthew', 'Irma', 'Maria', 'Michael']
 
@@ -45,7 +49,7 @@ def update_damages(list):
         if suffix == "M":
             fl_val = fl_val * 1000000
         else:
-            fl_val = fl_val * 1000000000   
+            fl_val = fl_val * 1000000000  
         damages_cleaned.append(fl_val)   
 #Run Function, fill with damages list, print cleaned list          
 update_damages(damages)
@@ -267,9 +271,38 @@ hurricane_mortality_rank()
 
 #---------------------------------------------------------------------------------------------------#
 #---------------------------------------------------------------------------------------------------#
-# Activity 9: write your catgeorize by mortality function here:
+# Activity 9: Write a function that finds the hurricane that caused the greatest damage, 
+# and how costly it was.
 #---------------------------------------------------------------------------------------------------#
 #---------------------------------------------------------------------------------------------------#
+
+def find_greatest_damage():
+    max_damage = 0
+    responsible_hurricane = ""
+    counter = 0
+
+    for hurricane in d_hurricanes:
+        counter += 1
+        str_damage = str(d_hurricanes[hurricane].get("Damage"))
+        
+        if str_damage != 'Damages not recorded':
+            fl_damage = float(str_damage)
+        else:
+            fl_damage = 0
+        
+        if fl_damage > max_damage:
+            max_damage = fl_damage
+            responsible_hurricane = d_hurricanes[hurricane].get("Name")
+
+    
+    return responsible_hurricane + " caused the greatest damage, totaling to: " + str(fl_damage)[:-2]
+    
+max_damage_storm_result = find_greatest_damage()
+#print(max_damage_storm_result)
+        
+
+
+
 
 #---------------------------------------------------------------------------------------------------#
 #---------------------------------------------------------------------------------------------------#
