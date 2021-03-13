@@ -113,16 +113,20 @@ build_dict_hurricanes()
 # 'Damage': 'Damages not recorded',
 # 'Deaths': 16
 # }
+
 d_hurricanes_by_year = {}
-
 def build_dict_hurricanes_by_year():
-    len = len(d_hurricanes)
-    print(len)
-    #for i in range(len(d_hurricanes)):
-       # year = d_hurricanes[Year]
-        #d_hurricanes_by_year[year[i]] = {
+    
+    for i in d_hurricanes:
+        current_year = d_hurricanes[i].get("Year")        
+        current_hurricane = d_hurricanes[i]
 
-       # }
+        if current_year not in d_hurricanes_by_year:
+            d_hurricanes_by_year[current_year] = [current_hurricane]
+        else:
+            d_hurricanes_by_year[current_year].append(current_hurricane)
+
+build_dict_hurricanes_by_year()
 
 
 
